@@ -2,15 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, config, nixos-hardware, ... }@args:
+{ pkgs, config, nixos-hardware, unstable, ... }@args:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-
-      nixos-hardware.nixosModules.common-cpu-intel
-      nixos-hardware.nixosModules.common-pc-ssd
+      ./user-hardware.nix
     ];
 
   # enables Nix flakes
@@ -24,6 +22,7 @@
   # Use the systemd-boot EFI boot loader.
   # boot.loader.systemd-boot.enable = true;
 
+  boot.blacklistedKernelModules = [ "nouveau" ];
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.enable = true;
   boot.loader.grub.useOSProber = true;
@@ -59,6 +58,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
 
 
   # Enable the Plasma 5 Desktop Environment.
@@ -96,11 +96,16 @@
     micro
     vscode
 
+    minecraft
+
     # bloatware
     neofetch
+    # shows hardware, used to get NVIDIA bus IDs
+    lshw
 
     # this is used to make micro clipboard work
     xclip
+
     git
   ];
 
