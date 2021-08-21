@@ -1,19 +1,6 @@
 { pkgs, ... }:
 
 {
-  xsession.windowManager.bspwm = {
-    enable = true;
-    monitors = { 
-      eDP-1 = [ "I" "II" "III" "IV" "V" ];
-      HDMI-0 = [ "I" "II" "III" "IV" "V" ];
-    };
-    settings = {
-      focus_follows_pointer = true;
-      border-width = 2;
-      window_gap = 12;
-    };
-  };
-
   services.dunst = {
     enable = true;
     settings = {
@@ -94,30 +81,6 @@
           foreground = "#cacacc";
           timeout = 120;
       };
-    };
-  };
-
-  services.sxhkd = {
-    enable = true;
-    keybindings = {
-
-      # reloads sxhkd
-      "super + Escape" = "pkill -USR1 -x sxhkd";
-
-      # starts alacritty, the terminal emulator
-      "super + Return" = "alacritty";
-
-      # file browser
-      "super + apostrophe" = "dolphin";
-
-      # quit / restart bspwm
-      "super + alt + {q,r}" = "bspc {quit, wm -r}";
-
-      # close and kill
-      "super + {_,shift + }w" = "bspc node -{c,k}";
-
-      # run menu
-      "super + space" = "rofi -show run";
     };
   };
 }

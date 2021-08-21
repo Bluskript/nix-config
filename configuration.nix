@@ -2,13 +2,15 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, config, nixos-hardware, unstable, ... }@args:
+{ pkgs, config, nixos-hardware, unstablePkgs, ... }@args:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+
+  	  # Include the results of the hardware scan.
       ./hardware-configuration.nix
-  	  
+      
       ./boot.nix
       ./nvidia.nix
       ./user-hardware.nix
@@ -16,8 +18,7 @@
       ./xorg.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  # boot.loader.systemd-boot.enable = true;
+  security.polkit.enable = true;
 
   networking.hostName = "city17"; # Define your hostname.
   networking.networkmanager.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -69,24 +70,42 @@
     brave
     discord
 
-    # editors
-    micro
+    # the best editor
     vscode
 
     # fast af terminal
     alacritty
 
+    # file browser
+    dolphin
+
+    # this is used to make micro clipboard work
+    xclip
+    # efficient screenshotting
+    shotgun
+    # helper to find the selection
+    hacksaw
+    # gif recorder
+    peek
+    # partition viewer
+    gparted
+
+    # so we back in the mine...
     minecraft
 
+    git
+
+    # superuser prompt
+    polkit
+    # gnome frontend for polkit
+    polkit_gnome
+    
     # bloatware
     neofetch
     # shows hardware, used to get NVIDIA bus IDs
     lshw
-
-    # this is used to make micro clipboard work
-    xclip
-
-    git
+  ] ++ [
+  	unstablePkgs.micro
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
