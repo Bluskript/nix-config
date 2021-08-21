@@ -22,7 +22,8 @@
 
   	  modules = [
   	    ./configuration.nix
-        home-manager.nixosModules.home-manager {        
+        home-manager.nixosModules.home-manager {
+          home-manager.extraSpecialArgs = { inherit impermanence; };  
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.blusk = import ./home/default.nix;
