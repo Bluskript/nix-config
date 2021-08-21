@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./impermanence.nix
     ./vscode.nix
     ./shell.nix
     ./bspwm.nix

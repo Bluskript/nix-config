@@ -23,14 +23,12 @@
   	  modules = [
   	    ./configuration.nix
         home-manager.nixosModules.home-manager {
-          imports = [ "${impermanence}/home-manager.nix" ];
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.blusk = import ./home/default.nix;
         }
         impermanence.nixosModules.impermanence {
           environment.persistence."/persistent" = {};
-          home.persistence."/persistent/home/blusk" = {};
         }
   	  ] ++ (with nixos-hardware.nixosModules; [
   	    common-pc

@@ -1,7 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, impermanence, ... }:
 
 {
   imports = [
+    "${impermanence}/home-manager.nix"
     ./config
   ];
 
