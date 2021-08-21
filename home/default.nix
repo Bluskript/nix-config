@@ -2,7 +2,6 @@
 
 {
   imports = [
-    "${impermanence}/home-manager.nix"
     ./config
   ];
 
