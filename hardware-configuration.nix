@@ -27,6 +27,11 @@
       fsType = "vfat";
     };
 
+  fileSystems."/oldSystem" = {
+    device = "/dev/disk/by-label/arch";
+    fsType = "ext4";
+  };
+
   fileSystems."/nix" =
     {
       device = "/dev/disk/by-label/nix";

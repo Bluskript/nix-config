@@ -7,9 +7,20 @@
     ./shell.nix
     ./bspwm.nix
     ./sxhkd.nix
-    ./dunst.nix
     ./rofi.nix
+    ./polybar
   ];
+
+  xdg.configFile = {
+    "dunst/dunstrc".source = ./dunst/dunstrc;
+  };
+
+  services = {
+  	dunst = {
+  	  enable = true;
+  	  # configFile = ./dunst/dunstrc;
+  	};
+  };
 
   home.persistence."/nix/persist/home/blusk" = {
     directories = [
@@ -41,5 +52,12 @@
   qt = {
     enable = true;
     platformTheme = "gtk";
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Dracula";
+    };
   };
 }

@@ -4,12 +4,14 @@
   services.sxhkd = {
     enable = true;
     keybindings = {
-
       # reloads sxhkd
       "super + Escape" = "pkill -USR1 -x sxhkd";
 
       # starts alacritty, the terminal emulator
       "super + Return" = "alacritty";
+
+      # focus or send to the given desktop
+      "super + {_,shift + }{1-9,0}" = "bspc {desktop -f,node -d} 'focused:^{1-9,10}'";
 
       # file browser
       "super + apostrophe" = "dolphin";

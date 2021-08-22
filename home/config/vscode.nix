@@ -13,6 +13,7 @@
       "workbench.tree.expandMode" = "doubleClick";
       "workbench.list.openMode" = "doubleClick";
       "workbench.iconTheme" = "material-icon-theme";
+      "explorer.confirmDelete" = false;
       "[nix]" = {
         "editor.defaultFormatter" = "jnoortheen.nix-ide";
       };

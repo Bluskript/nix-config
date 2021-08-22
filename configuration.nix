@@ -94,10 +94,8 @@
   environment.systemPackages = with pkgs; [
     brave
     discord
-
     # file browser
     dolphin
-
     # this is used to make micro clipboard work
     xclip
     # efficient screenshotting
@@ -121,18 +119,44 @@
     # bloatware
     neofetch
     # fancy system monitor
-    gotop
+    bottom-rs
     # fancier version of du
     du-dust
+    # fancier version of find
+    fd
+    # better grep basically
+    ripgrep
     # shows hardware, used to get NVIDIA bus IDs
     lshw
     # wallpaper changing tool with color support
     pywal
+    # dracula themes everywhere
+    dracula-theme
+    # gtk theming needs this as a dependency. TODO: make a PR for this
+    dconf
   ] ++ [
     unstablePkgs.micro
+    # LSP for nix for better IDE integrations
     unstablePkgs.rnix-lsp
     unstablePkgs.nixpkgs-fmt
   ];
+
+  fonts = {
+    enableDefaultFonts = false;
+    fonts = with pkgs; [
+      twitter-color-emoji
+      fira-code
+    ];
+    fontconfig = {
+      enable = true;
+      antialias = true;
+      defaultFonts = {
+        emoji = [
+          "Twitter Color Emoji"
+        ];
+      };
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
