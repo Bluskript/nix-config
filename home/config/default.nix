@@ -12,14 +12,14 @@
   ];
 
   home.persistence."/nix/persist/home/blusk" = {
-  	directories = [
-  	  ".gnupg"
-  	  ".ssh"
-  	  ".local/share/keyrings"
-  	  ".config/BraveSoftware"
-  	  ".config/Code"
-  	  ".config/discord"
-  	];
+    directories = [
+      ".gnupg"
+      ".ssh"
+      ".local/share/keyrings"
+      ".config/BraveSoftware"
+      ".config/Code"
+      ".config/discord"
+    ];
     allowOther = true;
   };
 

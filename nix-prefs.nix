@@ -9,7 +9,7 @@
     # enables Nix flakes
     package = pkgs.nixFlakes;
     extraOptions = ''
-	    extra-experimental-features = flakes nix-command ca-references
+      extra-experimental-features = flakes nix-command ca-references
     '';
 
     autoOptimiseStore = true;

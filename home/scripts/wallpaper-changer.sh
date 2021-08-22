@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Created by djazz // Dangershy
 # Dependencies: feh

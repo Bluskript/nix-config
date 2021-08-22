@@ -8,16 +8,16 @@
   imports =
     [
 
-  	  # Include the results of the hardware scan.
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      
+
       ./boot.nix
       ./nvidia.nix
       ./user-hardware.nix
       ./nix-prefs.nix
       ./xorg.nix
     ];
-  
+
   environment.persistence."/nix/persist" = {
     directories = [
       "/var/log"
@@ -40,7 +40,7 @@
   security.polkit.enable = true;
 
   networking.hostName = "city17"; # Define your hostname.
-  networking.networkmanager.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true; # Enables wireless support via wpa_supplicant.
   # networking.wireless.interfaces = [ "wlp4s0" ];
   # networking.wireless.userControlled.enable = true;
   # networking.wireless.userControlled.group = "wheel";
@@ -95,9 +95,6 @@
     brave
     discord
 
-    # the best editor
-    vscode
-
     # file browser
     dolphin
 
@@ -111,25 +108,30 @@
     peek
     # partition viewer
     gparted
-
     # so we back in the mine...
     minecraft
-
+    # auth for gpg
     pinentry
-
+    # gnome gui for gpg auth
     pinentry_gnome
-
     # superuser prompt
     polkit
     # gnome frontend for polkit
     polkit_gnome
-    
     # bloatware
     neofetch
+    # fancy system monitor
+    gotop
+    # fancier version of du
+    du-dust
     # shows hardware, used to get NVIDIA bus IDs
     lshw
+    # wallpaper changing tool with color support
+    pywal
   ] ++ [
-  	unstablePkgs.micro
+    unstablePkgs.micro
+    unstablePkgs.rnix-lsp
+    unstablePkgs.nixpkgs-fmt
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

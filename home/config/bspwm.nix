@@ -3,7 +3,7 @@
 {
   xsession.windowManager.bspwm = {
     enable = true;
-    monitors = { 
+    monitors = {
       eDP-1 = [ "I" "II" "III" "IV" "V" ];
       HDMI-0 = [ "I" "II" "III" "IV" "V" ];
     };
@@ -13,7 +13,7 @@
       window_gap = 12;
     };
     startupPrograms = [
-     "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+      "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
     ];
   };
 }

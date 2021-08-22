@@ -1,4 +1,4 @@
-{ pkgs, impermanence, ... }:
+{ pkgs, impermanence, unstablePkgs, ... }:
 
 {
   imports = [
@@ -17,8 +17,9 @@
 
   xsession.enable = true;
   xsession.pointerCursor = {
-    name = "Vanilla-DMZ";
-    package = pkgs.vanilla-dmz;
+    name = "Quintom_Ink";
+    package = unstablePkgs.quintom-cursor-theme;
     defaultCursor = "left_ptr";
+    size = 16;
   };
 }

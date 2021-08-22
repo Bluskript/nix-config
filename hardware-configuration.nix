@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
@@ -14,24 +15,28 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "none";
+    {
+      device = "none";
       fsType = "tmpfs";
       options = [ "defaults" "size=4G" "mode=755" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-label/BOOT";
+    {
+      device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-label/nix";
+    {
+      device = "/dev/disk/by-label/nix";
       fsType = "ext4";
       neededForBoot = true;
     };
 
   fileSystems."/etc/nixos" =
-    { device = "/nix/persist/etc/nixos";
+    {
+      device = "/nix/persist/etc/nixos";
       fsType = "none";
       options = [ "bind" ];
     };
