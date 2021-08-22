@@ -115,8 +115,6 @@
     # so we back in the mine...
     minecraft
 
-    git
-
     pinentry
 
     pinentry_gnome

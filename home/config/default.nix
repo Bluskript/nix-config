@@ -16,12 +16,18 @@
   	  ".gnupg"
   	  ".ssh"
   	  ".local/share/keyrings"
+  	  ".config/BraveSoftware"
+  	  ".config/Code"
+  	  ".config/discord"
   	];
     allowOther = true;
   };
 
   programs.git = {
+    enable = true;
     userEmail = "bluskript@gmail.com";
+    userName = "Danil Korennykh";
+    signing.key = null;
     signing.signByDefault = true;
   };
 
