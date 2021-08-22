@@ -31,6 +31,8 @@
     ];
   };
 
+  environment.pathsToLink = [ "/share/zsh" ];
+
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
@@ -85,6 +87,7 @@
   security.sudo.wheelNeedsPassword = false;
   users.users.blusk = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     extraGroups = [ "wheel" "networkmanager" ];
     hashedPassword = "$6$4YjCuLCPff$LwBCBi.eZSEQHQxWG1DLDqhF6.C.vB47fXAJD0qM.fdNz7H1yyVE60cGPejmQkLgsM1.B5tB.JAEXaiWO/b6z0";
   };

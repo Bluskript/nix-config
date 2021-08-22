@@ -30,6 +30,9 @@
 
       # draw-in terminals
       "super + shift + Return" = "$HOME/scripts/draw.sh";
+    
+      # change wallpaper
+      "super + alt + w" = "$HOME/scripts/wallpaper-changer.sh";
     };
   };
 }

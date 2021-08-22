@@ -15,23 +15,28 @@
     "dunst/dunstrc".source = ./dunst/dunstrc;
   };
 
-  services = {
-  	dunst = {
-  	  enable = true;
-  	  # configFile = ./dunst/dunstrc;
-  	};
-  };
+  services.dunst.enable = true;
 
   home.persistence."/nix/persist/home/blusk" = {
     directories = [
       ".gnupg"
       ".ssh"
+      ".vscode"
       ".local/share/keyrings"
       ".config/BraveSoftware"
       ".config/Code"
       ".config/discord"
     ];
     allowOther = true;
+  };
+
+  programs.zsh = {
+    enable = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   programs.git = {
