@@ -5,7 +5,7 @@
     enable = true;
 
     extensions = [
-      pkgs.vscode-extensions.bbenoist.Nix
+#      pkgs.vscode-extensions.bbenoist.Nix
     ];
 
     userSettings = {

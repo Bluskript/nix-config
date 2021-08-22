@@ -28,9 +28,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.blusk = import ./home/default.nix;
         }
-        impermanence.nixosModules.impermanence {
-          environment.persistence."/persistent" = {};
-        }
+        impermanence.nixosModules.impermanence
   	  ] ++ (with nixos-hardware.nixosModules; [
   	    common-pc
   	    common-pc-laptop

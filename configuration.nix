@@ -17,6 +17,25 @@
       ./nix-prefs.nix
       ./xorg.nix
     ];
+  
+  environment.persistence."/nix/persist" = {
+    directories = [
+      "/var/log"
+      "/var/lib/bluetooth"
+      "/var/lib/systemd/coredump"
+      "/etc/NetworkManager/system-connections"
+    ];
+    files = [
+      "/etc/machine-id"
+      "/etc/nix/id_rsa"
+    ];
+  };
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryFlavor = "gnome3";
+  };
 
   security.polkit.enable = true;
 
@@ -35,6 +54,9 @@
   networking.useDHCP = false;
   networking.interfaces.enp3s0f1.useDHCP = true;
   networking.interfaces.wlp4s0.useDHCP = true;
+
+  programs.fuse.userAllowOther = true;
+
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -59,9 +81,12 @@
   hardware.pulseaudio.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.root.hashedPassword = "$6$4YjCuLCPff$LwBCBi.eZSEQHQxWG1DLDqhF6.C.vB47fXAJD0qM.fdNz7H1yyVE60cGPejmQkLgsM1.B5tB.JAEXaiWO/b6z0";
+  security.sudo.wheelNeedsPassword = false;
   users.users.blusk = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
+    hashedPassword = "$6$4YjCuLCPff$LwBCBi.eZSEQHQxWG1DLDqhF6.C.vB47fXAJD0qM.fdNz7H1yyVE60cGPejmQkLgsM1.B5tB.JAEXaiWO/b6z0";
   };
 
   # List packages installed in system profile. To search, run:
@@ -72,9 +97,6 @@
 
     # the best editor
     vscode
-
-    # fast af terminal
-    alacritty
 
     # file browser
     dolphin
@@ -94,6 +116,10 @@
     minecraft
 
     git
+
+    pinentry
+
+    pinentry_gnome
 
     # superuser prompt
     polkit
