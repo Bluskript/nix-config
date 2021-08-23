@@ -15,6 +15,8 @@
         ".config/BraveSoftware"
         ".config/Code"
         ".config/discord"
+      ];
+      files = [
         ".local/share/zsh/history"
       ];
       allowOther = true;
@@ -74,7 +76,7 @@
     gpg-agent = {
       enable = true;
       grabKeyboardAndMouse = false;
-      pinentryFlavor = "qt";
+      pinentryFlavor = "gnome3";
     };
   };
 
@@ -132,12 +134,12 @@
         "${./scripts/wallpaper-changer.sh}"
       ];
     };
-    # pointerCursor = {
-    # name = "Quintom_Ink";
-    # package = latest.quintom-cursor-theme;
-    # defaultCursor = "left_ptr";
-    # size = 16;
-    # };
+    pointerCursor = {
+      name = "Quintom_Ink";
+      package = pkgs.quintom-cursor-theme;
+      defaultCursor = "left_ptr";
+      size = 16;
+    };
   };
 
   qt = {

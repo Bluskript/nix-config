@@ -33,6 +33,17 @@
 
       # change wallpaper
       "super + alt + w" = "$HOME/scripts/wallpaper-changer.sh";
+
+      # volume
+      "XF86AudioLowerVolume" = "pactl set-sink-volume @DEFAULT_SINK@ -5%";
+      "XF86AudioRaiseVolume" = "pactl set-sink-volume @DEFAULT_SINK@ +5%";
+      "XF86AudioMute" = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
+      "XF86AudioPrev" = "playerctl previous";
+      "XF86AudioNext" = "playerctl next";
+
+      # brightness
+      "XF86MonBrightnessDown" = "light -U 10";
+      "XF86MonBrightnessUp" = "light -A 10";
     };
   };
 }

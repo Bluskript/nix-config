@@ -3,6 +3,7 @@ channels: final: prev: {
   __dontExport = true; # overrides clutter up actual creations
 
   inherit (channels.latest)
+    quintom-cursor-theme
     cachix
     dhall
     discord

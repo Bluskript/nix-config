@@ -7,9 +7,9 @@
     polkit
     # gnome frontend for polkit
     polkit_gnome
-    # backlight control
-    light
   ];
+
+  programs.light.enable = true;
 
   security.sudo.wheelNeedsPassword = false;
 
@@ -23,6 +23,7 @@
     fonts = with pkgs; [
       twitter-color-emoji
       fira-code
+      noto-fonts-cjk
     ];
     fontconfig = {
       enable = true;

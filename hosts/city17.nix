@@ -1,7 +1,14 @@
-{ suites, profiles, nixos-hardware, ... }:
+{ suites, profiles, ... }:
 {
   ### root password is empty by default ###
-  imports = suites.base ++ [ profiles.users.blusk ];
+  imports = suites.base ++ (with profiles.nixos-hardware; [
+    common-pc
+    common-pc-laptop
+    common-pc-laptop-acpi_call
+    common-cpu-intel
+    common-pc-ssd
+    common-gpu-nvidia
+  ]);
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.enable = true; # i'm sorry but grub is just better

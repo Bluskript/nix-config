@@ -1,9 +1,9 @@
 {
   description = "A highly structured configuration database.";
 
-  nixConfig.extra-experimental-features = "nix-command flakes ca-references";
-  nixConfig.extra-substituters = "https://nrdxp.cachix.org https://nix-community.cachix.org";
-  nixConfig.extra-trusted-public-keys = "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
+  # nixConfig.extra-experimental-features = "nix-command flakes ca-references";
+  # nixConfig.extra-substituters = "https://nrdxp.cachix.org https://nix-community.cachix.org";
+  # nixConfig.extra-trusted-public-keys = "nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
 
   inputs =
     {
@@ -115,17 +115,17 @@
           };
 
           imports = [ (digga.lib.importHosts ./hosts) ];
-          hosts = {
-            /* set host specific properties here */
-            NixOS = { };
-          };
+          hosts = { };
           importables = rec {
             profiles = digga.lib.rakeLeaves ./profiles // {
               users = digga.lib.rakeLeaves ./users;
+              nixos-hardware = nixos-hardware.nixosModules;
             };
             suites = with profiles; rec {
               base = [
+                cachix
                 users.root
+                users.blusk
               ];
             };
           };
