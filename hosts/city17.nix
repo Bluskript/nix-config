@@ -1,4 +1,4 @@
-{ suites, profiles, ... }:
+{ suites, profiles, nixos-hardware, ... }:
 {
   ### root password is empty by default ###
   imports = suites.base ++ [ profiles.users.blusk ];
@@ -14,6 +14,15 @@
   boot.initrd.kernelModules = [ ];
 
   networking.networkmanager.enable = true;
+
+  hardware.nvidia.prime = {
+    offload.enable = true;
+
+    intelBusId = "PCI:00:02:0";
+
+    # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
+    nvidiaBusId = "PCI:01:00:0";
+  };
 
   environment.persistence."/nix/persist" = {
     directories = [

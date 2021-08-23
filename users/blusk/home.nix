@@ -15,6 +15,7 @@
         ".config/BraveSoftware"
         ".config/Code"
         ".config/discord"
+        ".local/share/zsh/history"
       ];
       allowOther = true;
     };
@@ -82,6 +83,7 @@
   };
 
   programs = {
+    feh.enable = true;
     rofi.enable = true;
     alacritty = {
       enable = true;
@@ -102,6 +104,13 @@
       userName = "Danil Korennykh";
       signing.key = null;
       signing.signByDefault = true;
+    };
+    vscode = {
+      enable = true;
+    };
+    exa = {
+      enable = true;
+      enableAliases = true;
     };
   };
 

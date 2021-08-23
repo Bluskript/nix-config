@@ -7,7 +7,33 @@
     polkit
     # gnome frontend for polkit
     polkit_gnome
+    # backlight control
+    light
   ];
+
+  security.sudo.wheelNeedsPassword = false;
+
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+
+  services.printing.enable = true;
+
+  fonts = {
+    enableDefaultFonts = false;
+    fonts = with pkgs; [
+      twitter-color-emoji
+      fira-code
+    ];
+    fontconfig = {
+      enable = true;
+      antialias = true;
+      defaultFonts = {
+        emoji = [
+          "Twitter Color Emoji"
+        ];
+      };
+    };
+  };
 
   users.users.blusk = {
     isNormalUser = true;
@@ -19,6 +45,7 @@
       "adbusers" # ADB perms
       "dialout" # useful for hardware dev
       "video" # adjust brightness
+      "networkmanager" # able to manage internet
     ];
     hashedPassword = "$6$4YjCuLCPff$LwBCBi.eZSEQHQxWG1DLDqhF6.C.vB47fXAJD0qM.fdNz7H1yyVE60cGPejmQkLgsM1.B5tB.JAEXaiWO/b6z0";
   };
@@ -37,6 +64,9 @@
 
   # required to make persistence.allowOther to work
   programs.fuse.userAllowOther = true;
+
+  # required to make zsh completion work for system pkgs
+  environment.pathsToLink = [ "/share/zsh" ];
 
   home-manager.users.blusk = import ./home.nix;
 }
