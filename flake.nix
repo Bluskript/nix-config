@@ -40,6 +40,8 @@
 
       nixos-hardware.url = "github:nixos/nixos-hardware";
 
+      impermanence.url = "github:nix-community/impermanence";
+
       # start ANTI CORRUPTION LAYER
       # remove after https://github.com/NixOS/nix/pull/4641
       nixpkgs.follows = "nixos";
@@ -61,6 +63,7 @@
     , agenix
     , nvfetcher
     , deploy
+    , impermanence
     , ...
     } @ inputs:
     digga.lib.mkFlake
@@ -73,7 +76,7 @@
           nixos = {
             imports = [ (digga.lib.importOverlays ./overlays) ];
             overlays = [
-              digga.overlays.patchedNix
+              # digga.overlays.patchedNix
               nur.overlay
               agenix.overlay
               nvfetcher.overlay
@@ -107,6 +110,7 @@
               home.nixosModules.home-manager
               agenix.nixosModules.age
               bud.nixosModules.bud
+              impermanence.nixosModules.impermanence
             ];
           };
 
@@ -120,18 +124,20 @@
               users = digga.lib.rakeLeaves ./users;
             };
             suites = with profiles; rec {
-              base = [ core users.nixos users.root ];
+              base = [
+                users.root
+              ];
             };
           };
         };
 
         home = {
           imports = [ (digga.lib.importModules ./users/modules) ];
-          externalModules = [ ];
+          externalModules = [ "${inputs.impermanence}/home-manager.nix" ];
           importables = rec {
             profiles = digga.lib.rakeLeaves ./users/profiles;
             suites = with profiles; rec {
-              base = [ direnv git ];
+              base = [ direnv git starship ];
             };
           };
           users = {
