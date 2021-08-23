@@ -1,4 +1,4 @@
-{ suites, profiles, ... }:
+{ suites, profiles, pkgs, ... }:
 {
   ### root password is empty by default ###
   imports = suites.base ++ (with profiles.nixos-hardware; [
@@ -10,23 +10,30 @@
     common-gpu-nvidia
   ]);
 
+  time.timeZone = "Europe/Moscow";
+
+  environment.shells = with pkgs; [ bashInteractive zsh ];
+
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.enable = true; # i'm sorry but grub is just better
   boot.loader.grub.useOSProber = true;
   boot.loader.grub.device = "nodev";
   boot.loader.grub.efiSupport = true;
+
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.initrd.kernelModules = [ ];
+  boot.blacklistedKernelModules = [ "nouveau" ];
+
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   networking.networkmanager.enable = true;
+  services.openssh.enable = true;
 
   hardware.nvidia.prime = {
     offload.enable = true;
-
     intelBusId = "PCI:00:02:0";
-
     # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
     nvidiaBusId = "PCI:01:00:0";
   };

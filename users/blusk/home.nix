@@ -71,15 +71,6 @@
     ];
   };
 
-  services = {
-    dunst.enable = true;
-    gpg-agent = {
-      enable = true;
-      grabKeyboardAndMouse = false;
-      pinentryFlavor = "gnome3";
-    };
-  };
-
   xdg.configFile = {
     "dunst/dunstrc".source = ./dunstrc;
   };

@@ -3,12 +3,19 @@
   # home-manager.users = { inherit (hmUsers) blusk; };
 
   environment.systemPackages = with pkgs; [
-    # superuser prompt
-    polkit
     # gnome frontend for polkit
     polkit_gnome
   ];
 
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryFlavor = "gnome3";
+  };
+
+  security.polkit.enable = true;
+
+  # backlight control
   programs.light.enable = true;
 
   security.sudo.wheelNeedsPassword = false;
@@ -17,6 +24,7 @@
   hardware.pulseaudio.enable = true;
 
   services.printing.enable = true;
+  services.upower.enable = true;
 
   fonts = {
     enableDefaultFonts = false;
